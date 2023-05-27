@@ -17,7 +17,7 @@ function App() {
   const [isEditAvatarPopupOpen, changeStateAvatarPopup] = React.useState(false);
   const [isAddCardPopupOpen, changeStateCardPopup] = React.useState(false);
 
-  const [selectedCard, selectCard] = React.useState(false);
+  const [selectedCard, selectCard] = React.useState({ name: '', link: '' });
 
 
   function handleCardClick(card) {
@@ -44,7 +44,7 @@ function App() {
     changeStateProfilePopup(false);
     changeStateCardPopup(false);
     changeStateAvatarPopup(false);
-    selectCard(false);
+    selectCard({ name: '', link: '' });
   }
 
 
@@ -57,44 +57,45 @@ function App() {
         <Header />
         <PopupWithForm title="Вы уверены?" name="confirm" submit="Да" />
         <PopupWithForm onClose={closeAllPopups} isOpen={isEditAvatarPopupOpen} title="Обновить аватар" name="avatar" submit="Сохранить"
-          children={() => {
-            return (<>
-              <input name="avatar" className="form__input" id="url-avatar" type="url" placeholder="Ссылка на картинку"
-                required />
-              <span className="form__error-message url-avatar-error"></span>
-            </>)
-          }} />
+        >
+
+          <input name="avatar" className="form__input" id="url-avatar" type="url" placeholder="Ссылка на картинку"
+            required />
+          <span className="form__error-message url-avatar-error"></span>
+        </PopupWithForm>
+
+
         <PopupWithForm onClose={closeAllPopups} isOpen={isEditProfilePopupOpen} title="Редактировать профиль" name="profile" submit="Сохранить"
-          children={() => {
-            return (
-              <>
-                <input name="name" id="name-input" minLength="2" maxLength="40" type="text" className="form__input"
-                  required />
-                <span className="form__error-message name-input-error"></span>
+        >
 
 
-                <input name="about" id="comment-input" minLength="2" maxLength="200" type="text" className="form__input"
-                  required />
-                <span className="form__error-message comment-input-error"></span>
-              </>
-            )
-          }}
-        />
+          <input name="name" id="name-input" minLength="2" maxLength="40" type="text" className="form__input"
+            required />
+          <span className="form__error-message name-input-error"></span>
 
-        <PopupWithForm onClose={closeAllPopups} isOpen={isAddCardPopupOpen} title="Новое место" name="card" submit="Сохранить"
-          children={() => {
-            return (
-              <>
-                <input name="name" id="place-input" minLength="2" maxLength="30" type="text" placeholder="Название"
-                  className="form__input" required />
-                <span className="form__error-message place-input-error"></span>
-                <input name="link" id="url-input" type="url" placeholder="Ссылка на картинку" className="form__input"
-                  required />
-                <span className="form__error-message url-input-error"></span>
-              </>
-            )
-          }}
-        />
+
+          <input name="about" id="comment-input" minLength="2" maxLength="200" type="text" className="form__input"
+            required />
+          <span className="form__error-message comment-input-error"></span>
+        </PopupWithForm>
+
+
+
+
+        <PopupWithForm onClose={closeAllPopups} isOpen={isAddCardPopupOpen} title="Новое место" name="card" submit="Сохранить">
+
+          <input name="name" id="place-input" minLength="2" maxLength="30" type="text" placeholder="Название"
+            className="form__input" required />
+          <span className="form__error-message place-input-error"></span>
+          <input name="link" id="url-input" type="url" placeholder="Ссылка на картинку" className="form__input"
+            required />
+          <span className="form__error-message url-input-error"></span>
+        </PopupWithForm>
+
+
+
+
+
         <ImagePopup onClose={closeAllPopups} card={selectedCard} />
         <Main onCardClick={handleCardClick} onEditProfile={handleEditProfileClick} onAddCard={handleAddCardClick} onEditAvatar={handleEditAvatarClick} />
         <Footer />

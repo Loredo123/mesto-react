@@ -12,7 +12,7 @@ function Card(props) {
     return (
         <li className="gallery__item">
             <article className="card">
-                <img onClick={handleClick} src={props.item.link} className="card__image" />
+                <img alt={`На фото ${props.item.name}`} onClick={handleClick} src={props.item.link} className="card__image" />
                 <div className="card__info overflow-text-content">
                     <h2 className="card__place-name overflow-text-content">{props.item.name}</h2>
                     <div className="card__likes">
@@ -24,6 +24,9 @@ function Card(props) {
                     className="card__remove button" />
             </article>
         </li>
+
+
+
     )
 }
 

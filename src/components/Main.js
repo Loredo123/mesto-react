@@ -11,7 +11,6 @@ function Main(props) {
     const [userName, setUserName] = React.useState("");
     const [userDescription, setUserDescription] = React.useState("");
     const [userAvatar, setUserAvatar] = React.useState("");
-    let test = [];
     const [cards, addCard] = React.useState([]);
 
     React.useEffect(() => {
@@ -20,14 +19,12 @@ function Main(props) {
             setUserAvatar(user.avatar);
             setUserDescription(user.about);
             setUserName(user.name);
-        })
+        }).catch(console.error)
 
         api.getInitialCards().then((data) => {
 
             addCard(data);
-
-
-        });
+        }).catch(console.error);
     }, [])
 
 
@@ -54,9 +51,7 @@ function Main(props) {
                             return (
                                 <Card onCardClick={props.onCardClick} key={card._id} item={card} {...card} />
                             )
-                        }
-
-                        )
+                        })
 
 
                     }
