@@ -46,13 +46,13 @@ function App() {
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       
       addCard((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
+    }).catch(console.error);
   }
 
   function handleCardDelete(card) {
     api.deleteCard(card._id).then(() => {
       addCard((state) => state.filter(item => item._id != card._id));
-    })
+    }).catch(console.error)
   }
 
   function handleCardClick(card) {
