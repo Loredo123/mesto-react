@@ -76,25 +76,43 @@ class Api {
 
     }
 
-    addLike(id) {
-        return this._request(`cards/${id}/likes`, {
-            method: 'PUT',
-            headers: this._headers,
 
-        })
-        
-
+    changeLikeCardStatus(id, isLiked){
+        if (isLiked) {
+            return this._request(`cards/${id}/likes`, {
+                method: 'PUT',
+                headers: this._headers,
+    
+            })
+        } else {
+            
+            return this._request(`cards/${id}/likes`, {
+                method: 'DELETE',
+                headers: this._headers,
+    
+            } )
+        }  
     }
 
-    deleteLike(id) {
-        return this._request(`cards/${id}/likes`, {
-            method: 'DELETE',
-            headers: this._headers,
+    // addLike(id) {
+    //     return this._request(`cards/${id}/likes`, {
+    //         method: 'PUT',
+    //         headers: this._headers,
 
-        } )
+    //     })
         
 
-    }
+    // }
+
+    // deleteLike(id) {
+    //     return this._request(`cards/${id}/likes`, {
+    //         method: 'DELETE',
+    //         headers: this._headers,
+
+    //     } )
+        
+
+    // }
 
 
     _checkResponse(res) {

@@ -1,11 +1,11 @@
 
 
 
-function PopupWithForm({ name, isOpen, title, onClose, children, submit }) {
+function PopupWithForm({ name, isOpen, title, onClose, children, submit, onSubmit }) {
     return (
         <div className={`popup popup_${name} ${isOpen && "popup_opened"}`}>
             <div className="popup__container">
-                <form name={name} className="form" autoComplete="off">
+                <form onSubmit={onSubmit} name={name} className="form" autoComplete="off">
                     <h2 className="form__title">{title}</h2>
                     {children}
                     <button type="submit" className="form__button-save form__button-save_avatar button">{submit}</button>
